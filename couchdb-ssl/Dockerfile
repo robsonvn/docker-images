@@ -24,7 +24,7 @@ RUN cd /usr/src/apache-couchdb-$COUCHDB_VERSION && ./configure --disable-docs &&
 
 RUN cp -R /usr/src/apache-couchdb-$COUCHDB_VERSION/rel/couchdb /opt/ \
 && apt-get purge -y --auto-remove \
-&& rm /usr/src/apache-couchdb-$COUCHDB_VERSION* \
+&& rm -rf /usr/src/apache-couchdb-$COUCHDB_VERSION* \
 && mkdir /opt/couchdb/data \
 && chown -R couchdb:couchdb /opt/couchdb
 
