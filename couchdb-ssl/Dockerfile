@@ -15,7 +15,8 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
   libcurl4-openssl-dev \
   git \
   tar \
-  wget
+  wget \
+  curl
 
 RUN cd /usr/src && wget http://www-us.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz && tar zxvf apache-couchdb-$COUCHDB_VERSION.tar.gz
 
@@ -23,7 +24,7 @@ RUN cd /usr/src/apache-couchdb-$COUCHDB_VERSION && ./configure --disable-docs &&
 
 RUN cp -R /usr/src/apache-couchdb-$COUCHDB_VERSION/rel/couchdb /opt/ \
 && apt-get purge -y --auto-remove \
-&& rm -rf /var/lib/apt/lists/* /usr/src/apache-couchdb-$COUCHDB_VERSION* \
+&& rm /usr/src/apache-couchdb-$COUCHDB_VERSION* \
 && mkdir /opt/couchdb/data \
 && chown -R couchdb:couchdb /opt/couchdb
 
